@@ -10,9 +10,17 @@ import { COMPANY } from "../../lib/company";
 const TransitMixer = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 80 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, x: 600 }}
+      animate={{
+        opacity: [0, 1, 1, 1],
+        x: [600, 600, -20, 0],
+      }}
+      transition={{
+        duration: 2.4,
+        times: [0, 0.05, 0.85, 1],
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.4,
+      }}
       className="relative w-full max-w-[640px] aspect-[4/3] select-none"
       data-testid="transit-mixer-animation"
       aria-hidden
@@ -27,10 +35,16 @@ const TransitMixer = () => {
         }}
       />
 
-      {/* Truck idle bounce */}
+      {/* Truck idle bounce (after drive-in settles) */}
       <motion.div
+        initial={{ y: 0 }}
         animate={{ y: [0, -4, 0, 3, 0] }}
-        transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
+        transition={{
+          duration: 3.6,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2.6,
+        }}
         className="relative w-full h-full"
       >
         {/* Real truck photo */}
@@ -160,6 +174,45 @@ const TransitMixer = () => {
           <span className="absolute bottom-3 left-3 w-4 h-4 border-l-2 border-b-2 border-[#d1c39a]/70" />
           <span className="absolute bottom-3 right-3 w-4 h-4 border-r-2 border-b-2 border-[#d1c39a]/70" />
         </div>
+      </motion.div>
+
+      {/* Dust burst on arrival */}
+      <motion.div
+        className="absolute -bottom-6 left-0 right-1/4 h-20 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0, 0.9, 0] }}
+        transition={{
+          duration: 2,
+          times: [0, 0.85, 0.92, 1],
+          delay: 0.4,
+        }}
+      >
+        {Array.from({ length: 12 }).map((_, i) => (
+          <motion.span
+            key={i}
+            className="absolute rounded-full bg-[#d1c39a]"
+            style={{
+              width: 4 + (i % 4) * 3,
+              height: 4 + (i % 4) * 3,
+              left: `${5 + i * 7}%`,
+              bottom: 0,
+              filter: "blur(2px)",
+              opacity: 0.5,
+            }}
+            initial={{ y: 0, scale: 0.3, opacity: 0 }}
+            animate={{
+              y: [-5, -40 - (i % 5) * 8],
+              x: [(i % 2 === 0 ? -1 : 1) * 5, (i % 2 === 0 ? -1 : 1) * 40],
+              scale: [0.3, 1.6],
+              opacity: [0, 0.7, 0],
+            }}
+            transition={{
+              duration: 1.4,
+              delay: 2.05 + i * 0.04,
+              ease: "easeOut",
+            }}
+          />
+        ))}
       </motion.div>
 
       {/* Diagonal speed lines streaking past */}
