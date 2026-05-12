@@ -49,15 +49,63 @@ const TransitMixer = () => {
       >
         {/* Real truck photo */}
         <div className="relative w-full h-full overflow-hidden rounded-sm shadow-[0_30px_60px_rgba(0,0,0,0.55)]">
-          <img
+          <motion.img
             src={COMPANY.assets.truck}
             alt="Perfect RMC TATA transit mixer"
             className="w-full h-full object-cover"
-            style={{
-              filter: "contrast(1.08) saturate(0.85) brightness(0.95)",
+            initial={{
+              filter:
+                "blur(8px) contrast(1.08) saturate(0.85) brightness(0.95)",
+            }}
+            animate={{
+              filter: [
+                "blur(8px) contrast(1.08) saturate(0.85) brightness(0.95)",
+                "blur(8px) contrast(1.08) saturate(0.85) brightness(0.95)",
+                "blur(0px) contrast(1.08) saturate(0.85) brightness(0.95)",
+              ],
+            }}
+            transition={{
+              duration: 2.4,
+              times: [0, 0.78, 1],
+              delay: 0.4,
+              ease: "easeOut",
             }}
             draggable={false}
           />
+
+          {/* Wheel-spin ground streaks (only during drive-in) */}
+          <motion.div
+            className="absolute left-0 right-0 bottom-[8%] h-[18%] pointer-events-none overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.9, 0.9, 0] }}
+            transition={{
+              duration: 2.4,
+              times: [0, 0.06, 0.75, 0.95],
+              delay: 0.4,
+            }}
+          >
+            {Array.from({ length: 7 }).map((_, i) => (
+              <motion.span
+                key={i}
+                className="absolute h-[3px] rounded-full"
+                style={{
+                  top: `${15 + i * 12}%`,
+                  width: "55%",
+                  background:
+                    "linear-gradient(to right, transparent 0%, rgba(209,195,154,0.85) 50%, transparent 100%)",
+                  filter: "blur(1px)",
+                }}
+                initial={{ x: "120%" }}
+                animate={{ x: "-180%" }}
+                transition={{
+                  duration: 0.45 + (i % 3) * 0.1,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: 0.4 + i * 0.05,
+                }}
+              />
+            ))}
+          </motion.div>
 
           {/* Cinematic gradient — darken edges to integrate with the dark hero bg */}
           <div
