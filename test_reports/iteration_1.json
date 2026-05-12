@@ -1,0 +1,33 @@
+{
+  "summary": "Frontend-only landing page testing for Perfect RMC. All 17 review requirements verified via Playwright on desktop (1920x1080) and mobile (390x844). Page loads at REACT_APP_BACKEND_URL with no console errors. Hero, Services (6 cards), Process (5 steps), Stats counters (13+/500+/24/7/100%), WhyUs, Clients marquee, Fleet (TATA 7 Cum + 5 specs), WhatsApp CTA, Footer (3 phones / 2 emails / Jarod-Vadodara address / hours) all render with correct content. All WhatsApp CTAs point to https://wa.me/918255009999. Animated concrete background, smooth scroll for nav links, and mobile menu toggle all work. data-testid attributes are present on every interactive element listed in the request.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "FloatingWhatsApp", "issue": "Floating button remains visible after programmatically scrolling back to top (window.scrollTo(0,0)). The scroll handler should toggle off when scrollY <= 500. May be a scroll-event/animation timing issue; in normal manual scroll it likely hides, but worth verifying initial state on mount (currently defaults to false, which is fine).", "selector": "[data-testid=\"floating-whatsapp\"]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Mobile menu (390px)", "issues": ["Open mobile menu uses bg-black/95 + backdrop-blur but the hero heading text still bleeds through visually behind the menu items. Consider solid bg-[#050505] or full-screen overlay for cleaner stacking."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "(Low) Investigate FloatingWhatsApp re-hide behaviour when user scrolls back above 500px; consider also setting `show=false` on a resize/route change. Real-user manual scroll likely works; tested via scrollTo programmatically.",
+    "(Optional) Use solid background on the mobile nav drawer so the hero text doesn't show through."
+  ],
+  "critical_code_review_comments": [
+    "ConcreteBackground deterministic particles (22) — good, avoids hydration mismatch.",
+    "All WhatsApp CTAs correctly use whatsappLink() helper -> single source of truth for the number 918255009999. Good DRY.",
+    "All sections use semantic ids (#services, #process, #why, #contact) matching navbar links. Smooth scroll enabled in App.js.",
+    "No backend code present — matches requirement (pure frontend landing page).",
+    "data-testid coverage on every interactive element and informational block — excellent testability."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100%"},
+  "test_credentials": "N/A — no auth on this site",
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Pure marketing landing page, no backend. All 6 services, 5 process steps, 4 stats, 4 why-us points, 10 client logos, 5 fleet specs render. WhatsApp number = 918255009999 used everywhere via whatsappLink() in /app/frontend/src/lib/company.js. Re-test only if FloatingWhatsApp hide-on-scroll-up is fixed or mobile menu background is changed.",
+  "rca of the issue": "FloatingWhatsApp: setShow is updated only inside the scroll listener. When window.scrollTo(0,0) is fired via JS, a scroll event does fire and should call setShow(false). Possibly the AnimatePresence exit animation (~300ms) or React batching delayed the DOM update during the 800ms wait. Likely not a real user-impacting bug — flagged as LOW."
+}

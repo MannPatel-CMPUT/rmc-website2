@@ -1,0 +1,60 @@
+export const COMPANY = {
+  name: "PERFECT RMC",
+  fullName: "Perfect Ready-Mix Concrete",
+  established: 2012,
+  whatsapp: "918255009999",
+  whatsappDisplay: "+91 82550 09999",
+  phones: ["+91 82550 09999", "+91 75748 48571", "+91 93286 66666"],
+  emails: ["businesshead@perfectrmc.in", "perfect_rmc@yahoo.com"],
+  hours: {
+    weekdays: "Mon – Sat · 9:00 AM – 7:00 PM",
+    sunday: "Sunday · On prior scheduling for pours",
+  },
+  address: {
+    line1: "Survey No: 176/1/2, Near Briyosis Softcaps Pvt. Ltd.",
+    line2: "Jarod – Rasulabad Road, Jarod",
+    line3: "Taluka Waghodia, Dist. Vadodara, Gujarat",
+  },
+  region: "Jarod · Waghodia · Vadodara · Halol",
+  certification: "IS : 4926 Compliant Ready-Mix Concrete",
+  plant: {
+    batching: "30 Cum/hr · Simem Make",
+    pumps: "3 Concrete Pumps · 60 Cum/hr",
+    mixers: "9 Transit Mixers · 7.0 Cum each",
+    silos: "300 MT Cement Storage · 3 × 100 MT",
+    generator: "Greaves 125 KVA",
+    lab: "In-house QA/QC Laboratory",
+  },
+  assets: {
+    logo: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/kdgt61cw_PHOTO-2026-03-16-01-22-44%203.jpg",
+    plant: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/dg3iotb5_PHOTO-2026-03-16-01-22-43.jpg",
+    plant2: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/sr6o8yuv_PHOTO-2026-03-16-01-22-44.jpg",
+    truck: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/9hlv89xt_PHOTO-2026-03-16-01-22-44%202.jpg",
+  },
+  clients: [
+    "Schneider Electric",
+    "GE Vernova",
+    "Larsen & Toubro",
+    "Voltas Ltd",
+    "MG Motors",
+    "Polycab Wires",
+    "Diamond Power",
+    "Cadila · Liva Pharma",
+    "Banco Products",
+    "Farmson Pharmaceutical",
+    "Mepro Pharmaceutical",
+    "Bharat Parenteral",
+    "ITM Universe",
+    "BCA Stadium",
+    "Krishnashray Auto",
+    "Kalintis Healthcare",
+    "Godwitt Soco Ind. Park",
+    "Gem Care Appliances",
+    "Lafarge India",
+    "Apollo Tyre · Shree Ganesh",
+  ],
+};
+
+export const whatsappLink = (
+  msg = "Hi Perfect RMC, I'd like to get a quote for ready-mix concrete."
+) => `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(msg)}`;
