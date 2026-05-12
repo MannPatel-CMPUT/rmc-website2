@@ -10,17 +10,33 @@ const clientLogos = [
   { name: "Larsen & Toubro", domain: "larsentoubro.com" },
   { name: "Voltas", domain: "voltas.com" },
   { name: "MG Motor India", domain: "mgmotor.co.in" },
-  { name: "Polycab", domain: "polycab.com" },
-  { name: "Apollo Tyres", domain: "apollotyres.com" },
+  {
+    name: "Polycab",
+    domain: "polycab.com",
+    customLogo:
+      "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/ipuezrqt_download%20%282%29.png",
+  },
+  {
+    name: "Apollo Tyres",
+    domain: "apollotyres.com",
+    customLogo:
+      "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/javmiv7q_apollo-tyres-logo.png",
+  },
   { name: "Cadila Pharma", domain: "cadilapharma.com" },
   { name: "Banco Products", domain: "bancoindia.com" },
-  { name: "Lafarge", domain: "lafarge.com" },
+  {
+    name: "Lafarge",
+    domain: "lafarge.com",
+    customLogo:
+      "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/58wh72oi_images.png",
+  },
 ];
 
-const ClientLogo = ({ name, domain, idx }) => {
+const ClientLogo = ({ name, domain, customLogo, idx }) => {
   const [errored, setErrored] = React.useState(false);
-  // Google's favicon API (sz=256 returns high-res square logos for most big brands)
-  const src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+  // Use uploaded high-res logo if provided, else Google's favicon API.
+  const src =
+    customLogo || `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -37,7 +53,11 @@ const ClientLogo = ({ name, domain, idx }) => {
           alt={name}
           loading="lazy"
           onError={() => setErrored(true)}
-          className="w-10 h-10 object-contain opacity-70 group-hover:opacity-100 transition-all duration-500"
+          className={
+            customLogo
+              ? "max-h-12 max-w-[120px] object-contain opacity-90 group-hover:opacity-100 transition-all duration-500"
+              : "w-10 h-10 object-contain opacity-70 group-hover:opacity-100 transition-all duration-500"
+          }
         />
       )}
       <span className="font-display text-xs md:text-sm uppercase tracking-[0.15em] text-white/55 group-hover:text-[#d1c39a] transition-colors">
