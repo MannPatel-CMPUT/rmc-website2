@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { COMPANY } from "../../lib/company";
 
-// Real brand logos via Clearbit logo CDN (PNG with transparent bg).
+// Real brand logos via Google's favicon API (sz=128).
 // Falls back to text mark if image fails to load.
 const clientLogos = [
   { name: "Schneider Electric", domain: "schneider-electric.com" },
