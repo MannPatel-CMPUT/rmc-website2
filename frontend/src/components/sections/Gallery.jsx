@@ -5,9 +5,9 @@ import { COMPANY } from "../../lib/company";
 
 const items = [
   {
-    src: COMPANY.assets.plant,
-    title: "Batching Plant",
-    tag: "Plant · Jarod",
+    src: COMPANY.assets.gate,
+    title: "Plant Entrance · Jarod",
+    tag: "Welcome",
     span: "md:col-span-2 md:row-span-2",
     aspect: "aspect-square md:aspect-auto",
   },
@@ -19,16 +19,30 @@ const items = [
     aspect: "aspect-square",
   },
   {
-    src: COMPANY.assets.plant2,
-    title: "Silo & Conveyor",
+    src: COMPANY.assets.plantSilos,
+    title: "Cement Silos",
     tag: "300 MT Storage",
     span: "",
     aspect: "aspect-square",
   },
   {
+    src: COMPANY.assets.plantPump,
+    title: "Concrete Pump Operation",
+    tag: "60 Cum/hr",
+    span: "",
+    aspect: "aspect-square",
+  },
+  {
     src: COMPANY.assets.plant,
-    title: "Concrete Pump Line",
-    tag: "60 Cum/hr · 3 Units",
+    title: "Batching Plant · Simem",
+    tag: "30 Cum/hr",
+    span: "",
+    aspect: "aspect-square",
+  },
+  {
+    src: COMPANY.assets.entrance,
+    title: "Site Approach",
+    tag: "Drive-In Bay",
     span: "md:col-span-2",
     aspect: "aspect-[2/1] md:aspect-[2/1]",
   },
