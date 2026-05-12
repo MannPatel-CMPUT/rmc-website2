@@ -30,6 +30,8 @@ export const COMPANY = {
     plant: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/dg3iotb5_PHOTO-2026-03-16-01-22-43.jpg",
     plant2: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/sr6o8yuv_PHOTO-2026-03-16-01-22-44.jpg",
     truck: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/9hlv89xt_PHOTO-2026-03-16-01-22-44%202.jpg",
+    truckSide:
+      "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/cyutla1y_desi-machines-mr-80c-transit-mixer-featured.jpg",
     plantPump: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/47eflfrb_PHOTO-2026-03-16-01-22-44.jpg",
     gate: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/c2bj5enw_PHOTO-2026-03-16-01-22-45%202.jpg",
     plantSilos: "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/9exaihcv_PHOTO-2026-03-16-01-22-45%203.jpg",
