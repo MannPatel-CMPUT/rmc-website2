@@ -127,6 +127,57 @@ export const COMPANY = {
     "Lafarge India",
     "Apollo Tyre · Shree Ganesh",
   ],
+  /** Service grid + brochure-style “Learn more” detail (company profile) */
+  services: [
+    {
+      id: "readymix",
+      tag: "Core Service",
+      title: "Ready-Mix Concrete",
+      desc: "Engineered concrete mixes M15 through M40, batched fresh at our Simem plant to IS:4926 standards.",
+      learnMore:
+        "Jarod plant uses a fully automatic Simem (Italy) batching system rated 30 cum/hr with 300 MT cement storage across three 100 MT silos. Greaves 125 KVA generator backs critical pours. Production and supply follow IS : 4926 for ready-mix concrete with documented batch traceability.",
+    },
+    {
+      id: "delivery",
+      tag: "Logistics",
+      title: "On-Time Site Delivery",
+      desc: "Nine transit mixers, three concrete pumps. Dispatched on schedule across Jarod, Waghodia, Vadodara & Halol.",
+      learnMore:
+        "Fleet includes nine transit mixers of 7 cum struck capacity each and three concrete pumps (60 cum/hr class) for line pumping and high-volume slabs. Dispatch is coordinated from the plant for Waghodia, Vadodara city, Halol and surrounding industrial belts so slots match your pour programme.",
+    },
+    {
+      id: "mixdesign",
+      tag: "Engineered",
+      title: "Custom Mix Design",
+      desc: "Application-specific designs for slabs, columns, foundations and pumpable mixes — tested and certified.",
+      learnMore:
+        "Mix designs span M15 through M40 and project-specific grades for slabs, columns, raft foundations, pavements and pumpable blends. Our QA/QC team reviews strength, workability and durability parameters before the batch is released for dispatch.",
+    },
+    {
+      id: "quality",
+      tag: "Assured",
+      title: "Quality Testing",
+      desc: "In-house QA/QC lab. Digital cube test, slump, aggregate, sieve and material certification on every pour.",
+      learnMore:
+        "In-house laboratory covers slump, compressive cube strength (digital testing), aggregate grading and sieve analysis, with material certification aligned to your purchase order. ISO 9001:2015 quality management supports consistent procedures; test records can travel with the delivery docket.",
+    },
+    {
+      id: "residential",
+      tag: "Residential",
+      title: "Residential Projects",
+      desc: "Villa foundations, structural slabs and high-rise pours for builders and developers.",
+      learnMore:
+        "We support plotted developments, villas, apartments and builder floors — from footing and raft pours through structural slabs and shear walls. Pour sequencing is planned with your site team to reduce wait time and protect finish schedules.",
+    },
+    {
+      id: "commercial",
+      tag: "Commercial",
+      title: "Commercial & Industrial",
+      desc: "Factories, pharmaceuticals, warehouses and infrastructure — trusted by Schneider, GE Vernova, L&T.",
+      learnMore:
+        "Regular supply to pharmaceuticals, auto, electrical and process industries, warehouses, IT parks and infrastructure. Reference pours include Schneider Electric, GE Vernova, Larsen & Toubro, Voltas, Polycab, MG Motors, Cadila / Liva, Banco, Farmson, Mepro, Bharat Parenteral and other major Gujarat campuses.",
+    },
+  ],
 };
 
 export const whatsappLink = (

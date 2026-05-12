@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Truck,
   Beaker,
@@ -8,48 +8,24 @@ import {
   ShieldCheck,
   Boxes,
   ArrowUpRight,
+  ChevronDown,
 } from "lucide-react";
+import { COMPANY } from "../../lib/company";
 
-const services = [
-  {
-    icon: Boxes,
-    title: "Ready-Mix Concrete",
-    desc: "Engineered concrete mixes M15 through M40, batched fresh at our Simem plant to IS:4926 standards.",
-    tag: "Core Service",
-  },
-  {
-    icon: Truck,
-    title: "On-Time Site Delivery",
-    desc: "Nine transit mixers, three concrete pumps. Dispatched on schedule across Jarod, Waghodia, Vadodara & Halol.",
-    tag: "Logistics",
-  },
-  {
-    icon: Beaker,
-    title: "Custom Mix Design",
-    desc: "Application-specific designs for slabs, columns, foundations and pumpable mixes — tested and certified.",
-    tag: "Engineered",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Quality Testing",
-    desc: "In-house QA/QC lab. Digital cube test, slump, aggregate, sieve and material certification on every pour.",
-    tag: "Assured",
-  },
-  {
-    icon: Home,
-    title: "Residential Projects",
-    desc: "Villa foundations, structural slabs and high-rise pours for builders and developers.",
-    tag: "Residential",
-  },
-  {
-    icon: Building2,
-    title: "Commercial & Industrial",
-    desc: "Factories, pharmaceuticals, warehouses and infrastructure — trusted by Schneider, GE Vernova, L&T.",
-    tag: "Commercial",
-  },
-];
+const iconById = {
+  readymix: Boxes,
+  delivery: Truck,
+  mixdesign: Beaker,
+  quality: ShieldCheck,
+  residential: Home,
+  commercial: Building2,
+};
 
 const Services = () => {
+  const [openId, setOpenId] = useState(null);
+  const services = COMPANY.services;
+  const n = String(services.length).padStart(2, "0");
+
   return (
     <section
       id="services"
@@ -68,7 +44,7 @@ const Services = () => {
             <div className="flex items-center gap-3 mb-5">
               <span className="w-10 h-px bg-[#d1c39a]" />
               <span className="text-[11px] tracking-[0.35em] uppercase text-[#d1c39a] font-semibold">
-                Services · 01 / 06
+                Services · 01 / {n}
               </span>
             </div>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-tight leading-[0.95]">
@@ -86,10 +62,11 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#1f1f1f]">
           {services.map((s, i) => {
-            const Icon = s.icon;
+            const Icon = iconById[s.id] || Boxes;
+            const expanded = openId === s.id;
             return (
               <motion.div
-                key={s.title}
+                key={s.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -97,7 +74,6 @@ const Services = () => {
                 className="group relative bg-[#0a0a0a] hover:bg-[#121212] p-10 transition-colors duration-500 overflow-hidden"
                 data-testid={`service-card-${i}`}
               >
-                {/* number watermark */}
                 <span className="absolute right-6 top-6 font-display text-6xl text-white/[0.04] group-hover:text-[#d1c39a]/10 transition-colors">
                   0{i + 1}
                 </span>
@@ -116,14 +92,48 @@ const Services = () => {
                   <h3 className="font-display text-2xl text-white uppercase tracking-tight mb-4">
                     {s.title}
                   </h3>
-                  <p className="text-white/60 text-sm leading-relaxed mb-8">
+                  <p className="text-white/60 text-sm leading-relaxed mb-6">
                     {s.desc}
                   </p>
 
-                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-[#d1c39a] opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500">
+                  <button
+                    type="button"
+                    onClick={() => setOpenId(expanded ? null : s.id)}
+                    aria-expanded={expanded}
+                    className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-[#d1c39a] hover:text-[#e5d9b6] transition-colors"
+                    data-testid={`service-learn-more-${s.id}`}
+                  >
                     Learn more
-                    <ArrowUpRight size={14} />
-                  </div>
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+                    />
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {expanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="mt-4 pt-4 border-t border-white/10 text-white/55 text-xs leading-relaxed">
+                          {s.learnMore}
+                        </p>
+                        <a
+                          href={COMPANY.profilePdfPath}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mt-3 inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-[#d1c39a]/80 hover:text-[#d1c39a]"
+                        >
+                          Company profile (PDF)
+                          <ArrowUpRight size={12} />
+                        </a>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </motion.div>
             );
