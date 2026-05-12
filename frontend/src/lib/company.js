@@ -127,7 +127,7 @@ export const COMPANY = {
     "Lafarge India",
     "Apollo Tyre · Shree Ganesh",
   ],
-  /** Service grid + brochure-style “Learn more” detail (company profile) */
+  /** Service grid + expandable Learn more detail */
   services: [
     {
       id: "readymix",

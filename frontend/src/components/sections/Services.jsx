@@ -7,7 +7,6 @@ import {
   Home,
   ShieldCheck,
   Boxes,
-  ArrowUpRight,
   ChevronDown,
 } from "lucide-react";
 import { COMPANY } from "../../lib/company";
@@ -122,15 +121,6 @@ const Services = () => {
                         <p className="mt-4 pt-4 border-t border-white/10 text-white/55 text-xs leading-relaxed">
                           {s.learnMore}
                         </p>
-                        <a
-                          href={COMPANY.profilePdfPath}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="mt-3 inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-[#d1c39a]/80 hover:text-[#d1c39a]"
-                        >
-                          Company profile (PDF)
-                          <ArrowUpRight size={12} />
-                        </a>
                       </motion.div>
                     )}
                   </AnimatePresence>
