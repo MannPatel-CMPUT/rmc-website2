@@ -112,12 +112,25 @@ const WhatsAppCTA = () => {
                   <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-2">
                     Call Lines
                   </div>
-                  <div className="space-y-1">
+                  <div className="space-y-3">
+                    <div>
+                      <div className="text-[9px] uppercase tracking-[0.2em] text-[#d1c39a]/90 mb-1">
+                        Primary
+                      </div>
+                      <a
+                        href={`tel:${COMPANY.phones[0].replace(/\s/g, "")}`}
+                        className="block font-display text-xl text-white hover:text-[#d1c39a] transition-colors"
+                        data-testid="cta-call-primary"
+                      >
+                        {COMPANY.phones[0]}
+                      </a>
+                    </div>
                     {COMPANY.phones.slice(1).map((p) => (
                       <a
                         key={p}
                         href={`tel:${p.replace(/\s/g, "")}`}
                         className="block font-display text-lg text-white/80 hover:text-white transition-colors"
+                        data-testid={`cta-call-${p.replace(/\s/g, "")}`}
                       >
                         {p}
                       </a>

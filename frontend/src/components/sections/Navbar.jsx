@@ -6,7 +6,10 @@ import { COMPANY, whatsappLink } from "../../lib/company";
 const links = [
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
+  { label: "Calculator", href: "#calculator" },
+  { label: "About", href: "#about" },
   { label: "Why Us", href: "#why" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -55,7 +58,7 @@ const Navbar = () => {
           </div>
         </a>
 
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {links.map((l) => (
             <a
               key={l.href}
@@ -70,11 +73,9 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-3">
           <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noreferrer"
+            href="#quote-request"
             className="bg-[#d1c39a] hover:bg-[#e5d9b6] text-[#050505] font-bold uppercase tracking-wider text-xs px-5 py-3 transition-colors"
-            data-testid="navbar-whatsapp-cta"
+            data-testid="navbar-get-quote-form"
           >
             Get Quote
           </a>
@@ -104,13 +105,22 @@ const Navbar = () => {
             </a>
           ))}
           <a
+            href="#quote-request"
+            onClick={() => setOpen(false)}
+            className="bg-[#d1c39a] text-[#050505] font-bold uppercase tracking-wider text-xs px-5 py-3 text-center"
+            data-testid="mobile-get-quote-form"
+          >
+            Get Quote
+          </a>
+          <a
             href={whatsappLink()}
             target="_blank"
             rel="noreferrer"
-            className="bg-[#d1c39a] text-[#050505] font-bold uppercase tracking-wider text-xs px-5 py-3 text-center"
+            onClick={() => setOpen(false)}
+            className="text-center text-white/70 uppercase tracking-widest text-xs border border-white/20 py-3 hover:border-[#d1c39a]/50 hover:text-white transition-colors"
             data-testid="mobile-whatsapp-cta"
           >
-            Get Quote on WhatsApp
+            Message on WhatsApp
           </a>
         </div>
       )}

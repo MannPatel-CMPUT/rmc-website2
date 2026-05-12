@@ -60,8 +60,21 @@ const WhyUs = () => {
                 {COMPANY.plant.batching}
               </div>
             </div>
-            <div className="absolute top-6 right-6 px-3 py-1.5 bg-[#d1c39a] text-[#050505] text-[10px] font-bold uppercase tracking-[0.2em]">
-              IS:4926
+            <div className="absolute top-6 right-6 flex flex-col gap-1.5 items-end">
+              <div className="px-3 py-1.5 bg-[#d1c39a] text-[#050505] text-[10px] font-bold uppercase tracking-[0.2em]">
+                IS:4926
+              </div>
+              <a
+                href={
+                  COMPANY.certifications.find((c) => c.pdfPath)?.pdfPath ?? "#"
+                }
+                target="_blank"
+                rel="noreferrer"
+                className="px-3 py-1.5 bg-[#050505]/90 border border-[#d1c39a]/40 text-[#d1c39a] text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#d1c39a] hover:text-[#050505] transition-colors"
+                data-testid="why-cert-iso9001"
+              >
+                ISO 9001
+              </a>
             </div>
           </div>
 

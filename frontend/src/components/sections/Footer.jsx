@@ -34,12 +34,54 @@ const Footer = () => {
               ready-mix concrete partner for builders, contractors, and
               industrial leaders across Vadodara, Waghodia, Halol and beyond.
             </p>
-            <div className="mt-6 inline-flex items-center gap-2 px-3 py-1.5 border border-[#d1c39a]/30">
-              <span className="w-1.5 h-1.5 bg-[#d1c39a] rounded-full" />
-              <span className="text-[10px] tracking-[0.3em] uppercase text-[#d1c39a]">
-                {COMPANY.certification}
-              </span>
+            <div className="mt-6 flex flex-col gap-2">
+              {COMPANY.certifications.map((c) => {
+                const inner = (
+                  <>
+                    <span className="w-1.5 h-1.5 bg-[#d1c39a] rounded-full flex-shrink-0 mt-0.5" />
+                    <span>
+                      <span className="text-[10px] tracking-[0.28em] uppercase text-[#d1c39a] block">
+                        {c.label}
+                      </span>
+                      <span className="text-[10px] text-white/45 tracking-wide normal-case">
+                        {c.sublabel}
+                      </span>
+                    </span>
+                  </>
+                );
+                return c.pdfPath ? (
+                  <a
+                    key={c.label}
+                    href={c.pdfPath}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-start gap-2 px-3 py-2 border border-[#d1c39a]/30 hover:border-[#d1c39a]/55 transition-colors group"
+                    data-testid="footer-cert-iso9001"
+                  >
+                    {inner}
+                    <span className="text-[9px] uppercase tracking-widest text-[#d1c39a]/70 group-hover:text-[#d1c39a] ml-auto flex-shrink-0">
+                      PDF
+                    </span>
+                  </a>
+                ) : (
+                  <div
+                    key={c.label}
+                    className="inline-flex items-start gap-2 px-3 py-2 border border-[#d1c39a]/30"
+                  >
+                    {inner}
+                  </div>
+                );
+              })}
             </div>
+            <a
+              href={COMPANY.profilePdfPath}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-block text-[10px] uppercase tracking-[0.28em] text-[#d1c39a]/80 hover:text-[#d1c39a] transition-colors"
+              data-testid="footer-company-profile"
+            >
+              Company profile (PDF)
+            </a>
           </div>
 
           {/* Contact */}
@@ -51,15 +93,22 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Phone size={15} className="text-[#d1c39a] mt-1 flex-shrink-0" />
                 <div className="space-y-1">
-                  {COMPANY.phones.map((p) => (
-                    <a
-                      key={p}
-                      href={`tel:${p.replace(/\s/g, "")}`}
-                      className="block hover:text-white transition-colors"
-                      data-testid={`footer-phone-${p}`}
-                    >
-                      {p}
-                    </a>
+                  {COMPANY.phones.map((p, idx) => (
+                    <div key={p}>
+                      {idx === 0 && (
+                        <div className="text-[9px] uppercase tracking-[0.2em] text-[#d1c39a]/90 mb-0.5">
+                          Primary
+                        </div>
+                      )}
+                      <span
+                        className={`block select-all ${
+                          idx === 0 ? "text-white font-medium" : "text-white/75"
+                        }`}
+                        data-testid={`footer-phone-${p}`}
+                      >
+                        {p}
+                      </span>
+                    </div>
                   ))}
                 </div>
               </li>
