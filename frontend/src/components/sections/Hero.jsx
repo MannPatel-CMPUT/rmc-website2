@@ -2,7 +2,6 @@ import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Phone } from "lucide-react";
 import ConcreteBackground from "./ConcreteBackground";
-import TransitMixer from "./TransitMixer";
 import { COMPANY, whatsappLink } from "../../lib/company";
 
 const Hero = () => {
@@ -24,14 +23,6 @@ const Hero = () => {
           Concrete · In · Motion
         </span>
       </div>
-      <div className="hidden xl:block absolute right-6 top-1/2 -translate-y-1/2 z-10 w-[46%] max-w-[620px]">
-        <TransitMixer />
-        <div className="text-right mt-4 pr-4">
-          <div className="font-display text-[10px] tracking-[0.4em] text-[#d1c39a] uppercase">
-            Est. {COMPANY.established} · IS:4926
-          </div>
-        </div>
-      </div>
 
       <motion.div
         style={{ y: yParallax, opacity }}
@@ -50,7 +41,7 @@ const Hero = () => {
         </motion.div>
 
         <h1
-          className="font-display text-white uppercase leading-[0.92] tracking-tight max-w-5xl xl:max-w-[640px] 2xl:max-w-[760px]"
+          className="font-display text-white uppercase leading-[0.92] tracking-tight max-w-5xl lg:max-w-6xl"
           data-testid="hero-headline"
         >
           {["Reliable", "Ready-Mix", "Concrete For", "Every Project."].map(
