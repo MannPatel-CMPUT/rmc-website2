@@ -8,6 +8,7 @@ import Stats from "@/components/sections/Stats";
 import WhyUs from "@/components/sections/WhyUs";
 import Clients from "@/components/sections/Clients";
 import Fleet from "@/components/sections/Fleet";
+import Gallery from "@/components/sections/Gallery";
 import WhatsAppCTA from "@/components/sections/WhatsAppCTA";
 import Footer from "@/components/sections/Footer";
 import FloatingWhatsApp from "@/components/sections/FloatingWhatsApp";
@@ -32,6 +33,7 @@ function App() {
         <WhyUs />
         <Clients />
         <Fleet />
+        <Gallery />
         <WhatsAppCTA />
       </main>
       <Footer />

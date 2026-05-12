@@ -2,8 +2,53 @@ import React from "react";
 import { motion } from "framer-motion";
 import { COMPANY } from "../../lib/company";
 
+// Real brand logos via Clearbit logo CDN (PNG with transparent bg).
+// Falls back to text mark if image fails to load.
+const clientLogos = [
+  { name: "Schneider Electric", domain: "schneider-electric.com" },
+  { name: "GE Vernova", domain: "gevernova.com" },
+  { name: "Larsen & Toubro", domain: "larsentoubro.com" },
+  { name: "Voltas", domain: "voltas.com" },
+  { name: "MG Motor India", domain: "mgmotor.co.in" },
+  { name: "Polycab", domain: "polycab.com" },
+  { name: "Apollo Tyres", domain: "apollotyres.com" },
+  { name: "Cadila Pharma", domain: "cadilapharma.com" },
+  { name: "Banco Products", domain: "bancoindia.com" },
+  { name: "Lafarge", domain: "lafarge.com" },
+];
+
+const ClientLogo = ({ name, domain, idx }) => {
+  const [errored, setErrored] = React.useState(false);
+  // Google's favicon API (sz=256 returns high-res square logos for most big brands)
+  const src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: (idx % 5) * 0.05 }}
+      className="bg-[#0a0a0a] h-32 flex flex-col items-center justify-center gap-3 px-6 text-center hover:bg-[#101010] transition-colors group"
+      data-testid={`client-logo-${idx}`}
+      title={name}
+    >
+      {!errored && (
+        <img
+          src={src}
+          alt={name}
+          loading="lazy"
+          onError={() => setErrored(true)}
+          className="w-10 h-10 object-contain opacity-70 group-hover:opacity-100 transition-all duration-500"
+        />
+      )}
+      <span className="font-display text-xs md:text-sm uppercase tracking-[0.15em] text-white/55 group-hover:text-[#d1c39a] transition-colors">
+        {name}
+      </span>
+    </motion.div>
+  );
+};
+
 const Clients = () => {
-  const list = COMPANY.clients;
+  const marqueeNames = COMPANY.clients;
   return (
     <section
       className="relative py-20 md:py-28 bg-[#050505] overflow-hidden border-y border-white/5"
@@ -25,7 +70,8 @@ const Clients = () => {
               </span>
             </div>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white uppercase tracking-tight leading-[0.95]">
-              Brands that don't compromise on <span className="text-[#d1c39a]">concrete</span>.
+              Brands that don't compromise on{" "}
+              <span className="text-[#d1c39a]">concrete</span>.
             </h2>
           </div>
           <p className="text-white/50 text-sm md:text-base max-w-xs">
@@ -35,38 +81,28 @@ const Clients = () => {
         </motion.div>
       </div>
 
-      {/* Marquee row 1 */}
-      <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
-        <div className="flex marquee-track whitespace-nowrap py-6">
-          {[...list, ...list].map((c, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-12 px-8 font-display text-2xl md:text-3xl uppercase tracking-tight text-white/70 hover:text-white transition-colors"
-            >
-              {c}
-              <span className="w-1.5 h-1.5 bg-[#d1c39a] rounded-full" />
-            </div>
+      {/* Real brand logos grid */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-14">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px bg-[#1a1a1a] border border-[#1a1a1a]">
+          {clientLogos.map((c, i) => (
+            <ClientLogo key={c.name} {...c} idx={i} />
           ))}
         </div>
       </div>
 
-      {/* Logos grid (text-only marks for now) */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px bg-[#1a1a1a] border border-[#1a1a1a]">
-          {list.slice(0, 10).map((c, i) => (
-            <motion.div
-              key={c}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: (i % 5) * 0.05 }}
-              className="bg-[#0a0a0a] h-24 flex items-center justify-center px-4 text-center text-white/55 text-sm font-display uppercase tracking-wider hover:text-[#d1c39a] hover:bg-[#101010] transition-colors"
-              data-testid={`client-logo-${i}`}
+      {/* Marquee of remaining names */}
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+        <div className="flex marquee-track whitespace-nowrap py-2">
+          {[...marqueeNames, ...marqueeNames].map((c, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-12 px-8 font-display text-xl md:text-2xl uppercase tracking-tight text-white/55 hover:text-white transition-colors"
             >
               {c}
-            </motion.div>
+              <span className="w-1.5 h-1.5 bg-[#d1c39a] rounded-full" />
+            </div>
           ))}
         </div>
       </div>
