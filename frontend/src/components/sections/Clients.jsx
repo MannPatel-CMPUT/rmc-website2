@@ -8,7 +8,12 @@ const clientLogos = [
   { name: "Schneider Electric", domain: "schneider-electric.com" },
   { name: "GE Vernova", domain: "gevernova.com" },
   { name: "Larsen & Toubro", domain: "larsentoubro.com" },
-  { name: "Voltas", domain: "voltas.com" },
+  {
+    name: "Voltas",
+    domain: "voltas.com",
+    customLogo:
+      "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/tr83qvd9_images%20%281%29.png",
+  },
   { name: "MG Motor India", domain: "mgmotor.co.in" },
   {
     name: "Polycab",
@@ -23,7 +28,12 @@ const clientLogos = [
       "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/javmiv7q_apollo-tyres-logo.png",
   },
   { name: "Cadila Pharma", domain: "cadilapharma.com" },
-  { name: "Banco Products", domain: "bancoindia.com" },
+  {
+    name: "Banco Products",
+    domain: "bancoindia.com",
+    customLogo:
+      "https://customer-assets.emergentagent.com/job_delivery-concrete/artifacts/mz8vow2q_images%20%282%29.png",
+  },
   {
     name: "Lafarge",
     domain: "lafarge.com",
